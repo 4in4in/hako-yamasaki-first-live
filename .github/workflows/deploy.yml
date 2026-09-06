@@ -30,7 +30,18 @@ jobs:
       - name: Install fallback CJK fonts
         run: sudo apt-get update -q && sudo apt-get install -y -q fonts-noto-cjk
 
+      # Ручной запуск (workflow_dispatch) — передеплой сайта без пересборки:
+      # PDF берётся из последнего Release, чтобы версия документа не менялась.
+      - name: Fetch PDF from latest release
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p build
+          gh release download --pattern 'hako-yamasaki-first-live.pdf' --dir build
+
       - name: Compile PDF
+        if: github.event_name != 'workflow_dispatch'
         run: |
           mkdir -p build
           typst compile --root . --font-path fonts \
@@ -54,7 +65,7 @@ jobs:
           path: build/hako-yamasaki-first-live.pdf
 
   deploy:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
     environment:
