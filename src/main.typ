@@ -30,6 +30,8 @@
 #set text(font: body-font, size: 10pt, lang: "ru")
 #set par(justify: true)
 #set heading(numbering: none)
+// У Zen Antique надстрочные глифы не уменьшены, поэтому синтезируем их сами.
+#set super(typographic: false, size: 0.65em, baseline: -0.35em)
 #show heading.where(level: 1): set align(center)
 #show heading.where(level: 1): set text(size: 12pt, weight: "bold")
 #show heading.where(level: 1): set block(above: 1.4em, below: 1em)
@@ -39,6 +41,7 @@
 #show table: set text(size: 8pt)
 #show table: set par(justify: false)
 #show footnote.entry: set par(justify: false)
+#show footnote.entry: set align(left)
 // Блоки ```lyrics``` превращаются в таблицы; шрифт raw-блока (моноширинный) сбрасываем.
 #show raw.where(lang: "lyrics"): it => {
   set text(font: body-font)
