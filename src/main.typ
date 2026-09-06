@@ -4,7 +4,7 @@
 #set document(
   title: "Хако Ямасаки – «Первый концерт»",
   author: author,
-  keywords: ("山崎ハコ", "Hako Yamasaki", "перевод", "транскрипция"),
+  keywords: ("山崎ハコ", "Hako Yamasaki", "перевод", "транскрипция", "версия " + version),
 )
 
 #set page(
@@ -19,7 +19,7 @@
     grid(
       columns: (1fr, auto, 1fr),
       align: (left, center, right),
-      [© #author, #years],
+      [© #author, #years · #version],
       text(size: 8pt, fill: black, counter(page).display()),
       link(license-url, license),
     )

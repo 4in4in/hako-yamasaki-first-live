@@ -23,7 +23,8 @@
   можно свободно читать и делиться с указанием автора, нельзя изменять и использовать в коммерческих целях. \
   Права на оригинальные тексты песен принадлежат их авторам. \
   Исходники сборника: #link(source-url, source-url) \
-  Набрано шрифтом Zen Antique © 2021 The Zen Antique Project Authors, SIL Open Font License 1.1.
+  Набрано шрифтом Zen Antique © 2021 The Zen Antique Project Authors, SIL Open Font License 1.1. \
+  Версия #version, собрано #build-date.
 ]
 
 #v(1cm)

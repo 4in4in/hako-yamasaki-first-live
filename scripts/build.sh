@@ -24,12 +24,13 @@ fi
 
 out="build/hako-yamasaki-first-live.pdf"
 mkdir -p build
-common=(--root . --font-path fonts src/main.typ)
+version="$(git describe --tags --always --dirty 2>/dev/null || echo dev)"
+common=(--root . --font-path fonts --input "version=$version" src/main.typ)
 
 case "${1:-build}" in
   build)
     "$typst_bin" compile "${common[@]}" "$out"
-    echo "Собрано: $out"
+    echo "Собрано: $out (версия $version)"
     ;;
   watch)
     exec "$typst_bin" watch "${common[@]}" "$out"

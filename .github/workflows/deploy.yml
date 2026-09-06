@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: typst-community/setup-typst@v4
         with:
@@ -31,7 +33,9 @@ jobs:
       - name: Compile PDF
         run: |
           mkdir -p build
-          typst compile --root . --font-path fonts src/main.typ build/hako-yamasaki-first-live.pdf
+          typst compile --root . --font-path fonts \
+            --input "version=$(git describe --tags --always)" \
+            src/main.typ build/hako-yamasaki-first-live.pdf
 
       - name: Assemble site
         run: |
