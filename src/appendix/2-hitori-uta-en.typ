@@ -1,7 +1,7 @@
 #import "../lib.typ": *
+#show: appendix.with("Приложение 2: Английский перевод композиции ひとり唄", note: [Источник перевода: https://www.youtube.com/watch?v=rh2qSbZlbTw (дата обращения: 24.09.2024).])
 
-#appendix("Приложение 2: Английский перевод композиции ひとり唄", note: [Источник перевода: https://www.youtube.com/watch?v=rh2qSbZlbTw (дата обращения: 24.09.2024).])[
-#lyrics(```
+```lyrics
 うち　なして　こげなところに | Why am I in this dark place?
 おるんやろか | I want to go leave
 帰りてえ　けど　誰も知らんし | But no one knows
@@ -30,5 +30,4 @@
 うち頑張らな | I'll keep on trying
 頑張らな　頑張らな | I'll keep trying I'll keep on trying
 うち頑張らな | I'll keep on trying
-```.text)
-]
+```

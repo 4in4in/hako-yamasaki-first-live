@@ -26,7 +26,8 @@
   },
 )
 
-#set text(font: ("Zen Antique", "Noto Serif CJK JP", "Noto Serif"), size: 10pt, lang: "ru")
+#let body-font = ("Zen Antique", "Noto Serif CJK JP", "Noto Serif")
+#set text(font: body-font, size: 10pt, lang: "ru")
 #set par(justify: true)
 #set heading(numbering: none)
 #show heading.where(level: 1): set align(center)
@@ -38,6 +39,11 @@
 #show table: set text(size: 8pt)
 #show table: set par(justify: false)
 #show footnote.entry: set par(justify: false)
+// Блоки ```lyrics``` превращаются в таблицы; шрифт raw-блока (моноширинный) сбрасываем.
+#show raw.where(lang: "lyrics"): it => {
+  set text(font: body-font)
+  lyrics(it.text)
+}
 #show outline: it => {
   in-outline.update(true)
   it

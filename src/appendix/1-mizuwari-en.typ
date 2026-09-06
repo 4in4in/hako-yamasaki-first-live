@@ -1,7 +1,7 @@
 #import "../lib.typ": *
+#show: appendix.with("Приложение 1: Английский перевод композиции 水割り", note: [Источник перевода: https://www.ultimate-guitar.com/forum/redirect/post?p=38497192 (дата обращения: 26.09.2024).])
 
-#appendix("Приложение 1: Английский перевод композиции 水割り", note: [Источник перевода: https://www.ultimate-guitar.com/forum/redirect/post?p=38497192 (дата обращения: 26.09.2024).])[
-#lyrics(```
+```lyrics
 私の心を奪うために　水割り何杯ついでもダメ | No matter how many glasses of water you have to steal my heart,
 私の心を奪うために　タバコを何本吸ってもダメ | No matter how many cigarettes you smoke, you can't steal my heart
 私が酔っ払ったふりして肩にもたれ | Pretending to be drunk and leaning on my shoulder
@@ -22,5 +22,4 @@
 
 私の心を奪うために　水割り何杯ついでもダメ | No matter how many glasses of water you give me to steal my heart,
 ダメよ　ダメよ　ダメよ　ダメよ | It's no good, no, no, no, no
-```.text)
-]
+```
