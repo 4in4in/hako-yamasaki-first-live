@@ -8,7 +8,7 @@
 распространяются по лицензии **Creative Commons
 Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**.
 
-Полный текст лицензии:
+Полный текст лицензии — в файле `LICENSE` в корне репозитория и на сайте:
 https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
 
 Краткое изложение на русском языке:
