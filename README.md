@@ -18,6 +18,7 @@ src/songs/*.typ         по файлу на песню
 src/appendix/*.typ      приложения
 fonts/                  Zen Antique (SIL OFL)
 site/                   страница для GitHub Pages
+scripts/build.sh        локальная сборка PDF
 ```
 
 Каждая песня — это файл вида:
@@ -46,13 +47,16 @@ site/                   страница для GitHub Pages
 Нужен [Typst](https://typst.app/) 0.13 или новее.
 
 ```sh
-typst compile --root . --font-path fonts src/main.typ build/hako-yamasaki-first-live.pdf
+scripts/build.sh          # build/hako-yamasaki-first-live.pdf
+scripts/build.sh watch    # пересборка при каждом сохранении
+scripts/build.sh png      # плюс страницы в build/png/
+scripts/build.sh open     # собрать и открыть PDF
 ```
 
-Для правки с живым обновлением:
+Скрипт ищет `typst` в PATH и в `~/.local/bin`. Та же команда вручную:
 
 ```sh
-typst watch --root . --font-path fonts src/main.typ build/hako-yamasaki-first-live.pdf
+typst compile --root . --font-path fonts src/main.typ build/hako-yamasaki-first-live.pdf
 ```
 
 ## Публикация
