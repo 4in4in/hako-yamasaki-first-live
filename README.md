@@ -61,9 +61,15 @@ typst compile --root . --font-path fonts src/main.typ build/hako-yamasaki-first-
 
 ## Публикация
 
-При каждом пуше в `main` GitHub Actions собирает PDF и выкладывает его
-вместе со страницей из `site/` на GitHub Pages. При пуше тега вида `v*`
-PDF дополнительно прикрепляется к GitHub Release.
+При каждом пуше в `main` GitHub Actions только собирает PDF и проверяет,
+что сборка проходит. Публикация происходит по тегу вида `v*`: PDF вместе
+со страницей из `site/` выкладывается на GitHub Pages и прикрепляется
+к GitHub Release.
+
+```sh
+git tag v1.1
+git push --tags
+```
 
 ## Лицензия
 
