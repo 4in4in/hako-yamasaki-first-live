@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Хако Ямасаки – «Первый концерт» · перевод</title>
   <style>
+    @font-face {
+      font-family: "Zen Antique";
+      src: url("fonts/ZenAntique-Regular.woff2") format("woff2");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
     :root {
       color-scheme: light dark;
       --fg: #1c1c1c;
@@ -14,11 +21,13 @@
       --accent: #7a2e2e;
     }
     @media (prefers-color-scheme: dark) {
-      :root { --fg: #e8e6e1; --muted: #a09c94; --bg: #161513; --line: #3a3733; --accent: #d98a8a; }
+      :root:not([data-theme="light"]) { --fg: #e8e6e1; --muted: #a09c94; --bg: #161513; --line: #3a3733; --accent: #d98a8a; }
     }
+    :root[data-theme="dark"] { color-scheme: dark; --fg: #e8e6e1; --muted: #a09c94; --bg: #161513; --line: #3a3733; --accent: #d98a8a; }
+    :root[data-theme="light"] { color-scheme: light; }
     html, body { margin: 0; background: var(--bg); color: var(--fg); }
     body {
-      font-family: Georgia, "Noto Serif", "Noto Serif CJK JP", serif;
+      font-family: "Zen Antique", Georgia, "Noto Serif", "Noto Serif CJK JP", serif;
       line-height: 1.5;
     }
     main { max-width: 52rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
@@ -29,32 +38,41 @@
     .actions { display: flex; gap: .75rem; flex-wrap: wrap; margin: 1.5rem 0; }
     .btn {
       display: inline-block; padding: .55rem 1rem; border: 1px solid var(--accent);
-      border-radius: .35rem; text-decoration: none; color: var(--accent);
+      text-decoration: none; color: var(--accent);
     }
     .btn.primary { background: var(--accent); color: #fff; }
-    .viewer { border: 1px solid var(--line); border-radius: .35rem; overflow: hidden; background: #fff; }
+    .viewer { border: 1px solid var(--line); overflow: hidden; background: #fff; }
     .viewer iframe { display: block; width: 100%; height: 80vh; border: 0; }
     footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
     ol { padding-left: 1.4rem; }
+    .theme-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 10;
+      padding: .35rem .6rem; font: inherit; font-size: .85rem; line-height: 1;
+      background: var(--bg); color: var(--fg); border: 1px solid var(--line); cursor: pointer;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
   </style>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
+<button class="theme-toggle" type="button" aria-label="Сменить тему" title="Сменить тему">☀︎ / ☾</button>
 <main>
   <header>
     <h1>Хако Ямасаки – «Первый концерт»</h1>
     <p class="jp">山崎ハコ・ファーストライブ (1976) · перевод, транскрипция и примечания</p>
   </header>
 
-  <p>
-    Русский перевод всех десяти песен концертного альбома, транскрипция
-    для чтения по-русски, примечания переводчика и перевод реплик
-    между композициями.
-  </p>
-
   <div class="actions">
-    <a class="btn primary" href="hako-yamasaki-first-live.pdf" download>Скачать PDF</a>
-    <a class="btn" href="hako-yamasaki-first-live.pdf">Открыть в браузере</a>
-    <a class="btn" href="https://github.com/4in4in/hako-yamasaki-first-live">Исходники на GitHub</a>
+    <a target="_blank" class="btn primary" href="hako-yamasaki-first-live.pdf" download>Скачать PDF</a>
+    <a target="_blank" class="btn" href="hako-yamasaki-first-live.pdf">Открыть в браузере</a>
+    <a target="_blank" class="btn" href="https://github.com/4in4in/hako-yamasaki-first-live">Исходники на GitHub</a>
   </div>
 
   <div class="viewer">
@@ -71,5 +89,24 @@
     </p>
   </footer>
 </main>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    function current() {
+      var t = root.getAttribute('data-theme');
+      if (t) return t;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    function render() { btn.textContent = current() === 'dark' ? '☀︎ Светлая' : '☾ Тёмная'; }
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      render();
+    });
+    render();
+  })();
+</script>
 </body>
 </html>
