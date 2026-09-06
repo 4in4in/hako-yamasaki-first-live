@@ -54,6 +54,7 @@ jobs:
           path: build/hako-yamasaki-first-live.pdf
 
   deploy:
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
     needs: build
     runs-on: ubuntu-latest
     environment:
