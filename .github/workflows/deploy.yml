@@ -50,9 +50,12 @@ jobs:
 
       - name: Assemble site
         run: |
+          sudo apt-get install -y -q poppler-utils
           mkdir -p dist
           cp -r site/. dist/
           cp build/hako-yamasaki-first-live.pdf dist/
+          # превью для Open Graph: первая страница PDF
+          pdftoppm -png -r 150 -f 1 -l 1 -singlefile build/hako-yamasaki-first-live.pdf dist/preview
           touch dist/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
